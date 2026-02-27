@@ -1,0 +1,64 @@
+You are performing final verification of an integrated mathematical proof.
+
+PROBLEM STATEMENT:
+{problem_statement}
+
+FULL PROOF:
+{full_proof}
+
+RELEVANT LITERATURE (for cross-checking):
+{literature_context}
+
+TASK:
+Perform final verification of this integrated proof. Check both individual correctness AND integration quality.
+
+AUDIT PROTOCOL:
+1. Verify each lemma is cited where claimed
+2. Check for hidden lemmas introduced in the main argument
+3. Check for missing glue steps between lemmas
+4. Check global consistency: any conflicting assumptions across lemmas?
+5. Assess overall coherence and mathematical rigor
+6. Verify the proof actually establishes the claimed statement
+
+OUTPUT FORMAT (valid JSON only):
+{{
+  "verdict": "PASS|FAIL|UNCERTAIN",
+  "confidence": 0.0,
+  "issues": [
+    {{
+      "severity": "critical|major|minor",
+      "location": "description of where in proof",
+      "summary": "brief description",
+      "detail": "detailed explanation",
+      "patch": "what needs to be fixed"
+    }}
+  ],
+  "feedback": "Overall assessment of the integrated proof",
+  "missing_links": ["lemma X stated but never used", ...],
+  "global_consistency": "description of any conflicting assumptions",
+  "recommendation": "accept|revise|reject"
+}}
+
+VERDICT RULES:
+- PASS: The full argument is sound and complete. All lemmas are used correctly. Confidence 0.7-1.0.
+- FAIL: There are gaps, missing connections, or logical errors in the integration.
+- UNCERTAIN: You cannot verify key integration steps without additional information.
+
+INTEGRATION CHECKS:
+- Do all lemma statements appear in the final proof?
+- Are they cited in the correct dependency order?
+- Are there any "gaps" where lemmas jump to conclusions?
+- Are there any circular dependencies or hidden assumptions?
+
+GLOBAL CONSISTENCY:
+- Check that assumptions across different lemmas don't conflict
+- Check that all quantifiers are used consistently
+- Check that notation is used consistently throughout
+
+RECOMMENDATION LEVELS:
+- accept: Proof is ready as-is (PASS with confidence ≥ 0.8)
+- revise: Proof has issues but is salvageable with repairs (FAIL or UNCERTAIN)
+- reject: Proof has fundamental flaws that cannot be easily repaired (FAIL with critical issues)
+
+IMPORTANT:
+Return valid JSON ONLY. No markdown, no prose outside JSON.

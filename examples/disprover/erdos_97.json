@@ -1,0 +1,60 @@
+{
+  "id": "erdos_97",
+  "statement": "Does every convex polygon have a vertex with no other 4 vertices equidistant from it? Equivalently: for every convex polygon P with vertices v_1, ..., v_n, does there exist a vertex v_i such that no four other vertices v_a, v_b, v_c, v_d satisfy d(v_i, v_a) = d(v_i, v_b) = d(v_i, v_c) = d(v_i, v_d)?",
+  "win_condition": "Find a convex polygon with n vertices such that EVERY vertex has at least 4 other vertices equidistant from it. That is, for every vertex v_i, there exist distinct vertices v_a, v_b, v_c, v_d (all different from v_i) with d(v_i, v_a) = d(v_i, v_b) = d(v_i, v_c) = d(v_i, v_d).",
+  "domain": "Combinatorial Geometry",
+  "background": "Erdős posed this problem in 1946. The weaker version with 3 equidistant vertices (instead of 4) was disproved by Danzer, who constructed a 9-point convex polygon where every vertex has 3 equidistant vertices. Fishburn and Reeds later found a 20-point convex polygon with a similar uniform equidistance property. Erdős asserted that Danzer proved the statement false for any constant k (not just k=3), but this claim was not repeated in later publications, suggesting possible error. The convexity requirement is essential: without it, counterexamples exist using unit-distance graph embeddings. The problem is connected to Erdős Problem 96: if true for k+1 vertices, it would establish an upper bound of kn for Problem 96 via induction. The problem carries a $100 bounty.",
+  "known_bounds": "Danzer's 9-point construction achieves 3 equidistant vertices per vertex (k=3). Fishburn-Reeds 20-point construction also achieves uniform equidistance. No construction achieving k=4 (every vertex having 4 equidistant vertices) in convex position is known. The regular n-gon gives at most 2 equidistant vertices per vertex for any given distance (due to chord-length uniqueness).",
+  "tags": ["erdos-problems", "equidistant-vertices", "convex-polygons", "combinatorial-geometry", "distances", "open-problem"],
+  "context_documents": [],
+  "strategy_suggestions": [
+    {
+      "suggestion": "Study and extend Danzer's 9-point construction for k=3 to achieve k=4",
+      "rationale": "Danzer's construction is the only known example achieving uniform equidistance in convex position. Understanding its algebraic structure may reveal how to add vertices or modify the construction to achieve 4 equidistant vertices per vertex.",
+      "priority": "high"
+    },
+    {
+      "suggestion": "Search among cyclic polygons (all vertices on a single circle)",
+      "rationale": "Points on a circle are automatically in convex position. Equal distances correspond to equal chord lengths, i.e. equal angular separations. The problem reduces to finding a set of angles on [0, 2π) such that every angle has 4 others at equal angular difference. This connects to difference sets and additive combinatorics.",
+      "priority": "high"
+    },
+    {
+      "suggestion": "Search among points on two concentric circles (extending the approach from Erdős Problem 1082)",
+      "rationale": "Two-layer cyclic constructions provide richer distance spectra than single-circle constructions while keeping the parameter space low-dimensional. Cross-layer distances add new coincidence opportunities.",
+      "priority": "medium"
+    },
+    {
+      "suggestion": "Use algebraic/optimization approach: parameterize convex n-gons and optimize for equidistance coverage",
+      "rationale": "Define an objective function counting the minimum over vertices of the maximum multiplicity of distances from that vertex, and maximize it. Use gradient-free optimization (simulated annealing) on vertex coordinates with convexity constraint.",
+      "priority": "medium"
+    }
+  ],
+  "prior_attempts": [
+    {
+      "description": "Danzer's construction of a 9-point convex polygon with uniform 3-equidistance",
+      "result": "Successfully achieves k=3 (every vertex has 3 equidistant vertices) but not k=4",
+      "parameter_range": "9 vertices in convex position",
+      "what_was_ruled_out": "This specific construction does not extend trivially to k=4"
+    },
+    {
+      "description": "Fishburn-Reeds 20-point convex polygon with uniform equidistance property",
+      "result": "Achieves uniform equidistance but specific k value and construction details should be investigated",
+      "parameter_range": "20 vertices in convex position",
+      "what_was_ruled_out": "Details of construction needed to assess extensibility"
+    }
+  ],
+  "search_constraints": [
+    {
+      "constraint": "Focus on n <= 100 vertices for initial screening",
+      "rationale": "Smaller polygons are easier to verify exactly and the known constructions use 9-20 vertices"
+    },
+    {
+      "constraint": "Ensure strict convexity of all candidate polygons",
+      "rationale": "The problem specifically requires convex polygons; non-convex counterexamples are known to exist"
+    },
+    {
+      "constraint": "Use exact arithmetic or high-precision (200+ digits) for distance comparisons",
+      "rationale": "Near-equal distances in floating-point can give false positives; exact verification is essential"
+    }
+  ]
+}

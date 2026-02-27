@@ -1,0 +1,46 @@
+You are summarizing a proved lemma into a compact interface for downstream use.
+
+LEMMA ID: {lemma_id}
+
+LEMMA STATEMENT:
+{lemma_statement}
+
+PROOF:
+{lemma_proof}
+
+TASK:
+Extract a concise interface that downstream lemmas can use. This should be a self-contained summary that allows other proofs to cite this result without reading the full proof.
+
+OUTPUT FORMAT (text, not JSON):
+
+**Lemma {lemma_id}:** [Concise restatement of what was proved]
+
+**Assumptions:** [List all assumptions needed, in order]
+
+**Result:** [Precise statement of what holds]
+
+**Usage notes:** [How to apply this result: what hypotheses must be checked, what conclusion follows]
+
+REQUIREMENTS:
+1. Be precise: include all necessary hypotheses
+2. Be concise: aim for ≤ 300 words total
+3. Use clear mathematical notation
+4. Avoid internal proof details (just state what was proved and under what conditions)
+5. If the result has natural corollaries or special cases, mention them briefly
+
+EXAMPLE:
+
+**Lemma L2:** Continuous images of compact sets are compact.
+
+**Assumptions:**
+- f: X → Y is a continuous function
+- K ⊆ X is a compact subset
+- X and Y are topological spaces
+
+**Result:** The image f(K) is compact in Y.
+
+**Usage notes:** To apply, verify (1) f is continuous, (2) K is compact in domain. Then f(K) is automatically compact in codomain. Useful for proving boundedness results via continuous functions on compact domains.
+
+---
+
+Write the interface now.

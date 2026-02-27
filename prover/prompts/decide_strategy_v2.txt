@@ -1,0 +1,166 @@
+You are deciding whether to attempt a DIRECT proof or DECOMPOSE into sub-problems.
+
+LEMMA TO ANALYZE:
+Lemma ID: {lemma_id}
+Statement: {lemma_statement}
+Assumptions: {lemma_assumptions}
+
+AVAILABLE DEPENDENCIES:
+{dependency_interfaces}
+
+PROBLEM CONTEXT:
+Domain: {problem_domain}
+Background: {problem_background}
+
+CURRENT STATE:
+- Recursion depth: {current_depth} / {max_depth}
+- Retry count: {retry_count} / {max_retries}
+
+PRIOR CONTEXT (from previous attempts):
+{context_summary}
+
+═══════════════════════════════════════════════════════════════════════════
+DECISION FRAMEWORK
+═══════════════════════════════════════════════════════════════════════════
+
+Your task is to choose the most EFFECTIVE approach, not the most direct one.
+
+OPTION 1: "direct" - Attempt to prove the lemma in one step
+  ✓ When to use:
+    - Lemma is a simple logical consequence of dependencies
+    - No intermediate artifacts/constructions needed
+    - Statement is definitional or follows by standard arguments
+    - Depth >= {max_depth} - 1 (forced to try, no room left)
+
+  ✗ When NOT to use:
+    - Lemma requires constructing multiple distinct objects
+    - Contains action verbs: "produce", "find", "choose", "compute", "extract", "construct"
+    - Dependencies provide existence but lemma needs explicit construction
+    - Statement has multiple independent conditions that could fail separately
+
+OPTION 2: "decompose" - Break into sub-lemmas, solve recursively, then integrate
+  ✓ When to use:
+    - Lemma contains CONSTRUCTIVE verbs (see above)
+    - Can identify 2+ distinct logical/computational steps
+    - Lemma mixes existence + construction (dependency proves ∃X, need explicit X)
+    - Context shows direct attempts failed (retry_count > 0)
+    - Lemma has conjunctive structure (A ∧ B ∧ C can split to sub-lemmas)
+    - Large depth budget available (current_depth < 8 means 7+ levels remaining)
+
+  ✗ When NOT to use:
+    - Depth >= {max_depth} - 1 (insufficient recursion budget)
+    - Lemma is purely definitional or tautological
+    - Context shows integration failures in previous decompositions
+    - Sub-problems would be equally hard as parent
+
+═══════════════════════════════════════════════════════════════════════════
+CRITICAL GUIDELINES (in priority order)
+═══════════════════════════════════════════════════════════════════════════
+
+1. **FORCED DECISIONS:**
+   - If depth >= {max_depth} - 1: MUST choose "direct" (no recursion room)
+   - If retry_count >= 3: STRONGLY prefer "decompose" (direct approach failing)
+
+2. **CONSTRUCTIVE LEMMAS (highest priority for decompose):**
+   - Keywords: "produce", "construct", "find", "choose", "compute", "extract", "output"
+   - Pattern: "Running X produces Y" → decompose into: setup X, run X, extract Y, verify Y
+   - Pattern: "There exists X with property P" + need explicit X → decompose
+   - Example: "Find forest F* with property P" →
+     Sub-lemmas: [choose parameters, enumerate candidates, search for P, certify F*]
+
+3. **EXISTENCE vs CONSTRUCTION GAP:**
+   - If dependency proves "procedure exists" but lemma needs "run procedure and get result"
+   - If dependency proves "∃X: P(X)" but lemma needs "produce explicit X"
+   - → DECOMPOSE to bridge the gap
+
+4. **MULTI-STEP LEMMAS:**
+   - If lemma requires 2+ independent computational/logical steps
+   - If failure could occur at different stages (setup, computation, verification)
+   - → DECOMPOSE to isolate failure points
+
+5. **DEPTH-BASED STRATEGY:**
+   - Depth 0-5: FAVOR decompose (large recursion budget, decompose early pays off)
+   - Depth 6-10: BALANCED (evaluate lemma complexity)
+   - Depth 11-13: LEAN toward direct (limited budget)
+   - Depth 14+: FORCE direct (at limit)
+
+6. **DEPENDENCY SUFFICIENCY (careful evaluation):**
+   - If dependencies provide LOGICAL framework: consider direct
+   - If dependencies provide EXISTENCE but lemma needs ARTIFACTS: decompose
+   - Example: dependency "procedure exists", lemma "procedure produces X" → decompose
+
+7. **COMPLEXITY HEURISTICS:**
+   - Statement length > 200 chars: slightly favor decompose
+   - Contains 3+ quantifiers (∀, ∃): slightly favor decompose
+   - Nested conditionals (if-then-else chains): favor decompose
+
+8. **COST-BENEFIT ANALYSIS:**
+   - Don't view decomposition as "overhead" - it's an INVESTMENT
+   - Breaking 1 hard lemma into 3 easy lemmas may be cheaper than 5 failed retries
+   - Decomposition provides better error localization (know which sub-step fails)
+
+═══════════════════════════════════════════════════════════════════════════
+COMMON PITFALLS TO AVOID
+═══════════════════════════════════════════════════════════════════════════
+
+❌ "Decomposition is unnecessary overhead" → Wrong! It's strategic investment.
+❌ "Depth 0/15 means no pressure" → Wrong! Depth 0 is BEST time to decompose.
+❌ "Dependencies cover most of lemma" → Check if they provide artifacts or just existence.
+❌ "Lemma looks simple" → Check for hidden constructive steps (produce/find/compute).
+❌ "No prior failures" → Not the only trigger! Constructive lemmas should decompose upfront.
+
+═══════════════════════════════════════════════════════════════════════════
+DECISION PROCESS (follow this order)
+═══════════════════════════════════════════════════════════════════════════
+
+Step 1: Check forced decisions
+  - Depth >= {max_depth} - 1? → "direct" (required)
+  - Retry count >= 3? → "decompose" (strong evidence direct fails)
+
+Step 2: Identify lemma type
+  - Contains constructive verbs (produce/find/choose/compute/extract)?
+  - Requires explicit artifacts vs logical proof?
+  - → YES: LEAN toward "decompose"
+
+Step 3: Check existence-construction gap
+  - Do dependencies prove "exists X" but lemma needs "produce X"?
+  - Do dependencies provide procedure but lemma needs procedure OUTPUT?
+  - → YES: LEAN toward "decompose"
+
+Step 4: Count independent steps
+  - Can you identify 2+ distinct steps (setup, compute, verify, extract)?
+  - Could failure occur at different stages?
+  - → YES: LEAN toward "decompose"
+
+Step 5: Evaluate depth budget
+  - Depth < 8? → FAVOR decompose (plenty of room)
+  - Depth >= 11? → FAVOR direct (limited room)
+
+Step 6: Final assessment
+  - Weigh all factors above
+  - Default to decompose if lemma is non-trivial and depth < 10
+  - Choose direct only if truly one-step provable OR forced by depth
+
+═══════════════════════════════════════════════════════════════════════════
+OUTPUT FORMAT
+═══════════════════════════════════════════════════════════════════════════
+
+Provide valid JSON only (no markdown, no extra text):
+
+{{
+  "decision": "direct",  // or "decompose"
+  "reasoning": "Follow this structure:
+1. Lemma type: [constructive/logical/mixed]
+2. Key factors: [list 2-3 most important factors from guidelines above]
+3. Existence-construction gap: [yes/no, explain if yes]
+4. Multi-step analysis: [can be broken into X steps: ...]
+5. Depth consideration: [depth {current_depth}/{max_depth}, budget assessment]
+6. Final verdict: [why chosen approach is most effective]",
+  "confidence": 0.85,  // 0.0-1.0, how certain are you this is the best choice?
+  "decomposition_strategy_hint": "If decompose chosen, suggest how to split (optional)"
+}}
+
+═══════════════════════════════════════════════════════════════════════════
+REMEMBER: Your goal is PROOF SUCCESS, not minimizing steps. If decomposition
+increases success probability, it's the RIGHT choice, not "overhead".
+═══════════════════════════════════════════════════════════════════════════

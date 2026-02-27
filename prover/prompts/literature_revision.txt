@@ -1,0 +1,27 @@
+PROBLEM STATEMENT:
+{problem_statement}
+
+BACKGROUND KNOWLEDGE:
+{problem_background}
+
+MATHEMATICAL DOMAIN: {problem_domain}
+
+======================================================================
+RAW LITERATURE SURVEY:
+======================================================================
+{raw_literature}
+======================================================================
+
+CURRENT PROCESSED LITERATURE:
+{processed_literature}
+
+AUDIT FEEDBACK:
+{review_feedback}
+
+======================================================================
+TASK: Revise Processed Literature
+======================================================================
+
+Revise the processed literature to address ALL issues raised in the audit
+feedback above. Produce the complete revised JSON (not just the changes).
+Maintain the same schema.

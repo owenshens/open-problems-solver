@@ -1,0 +1,56 @@
+You are an independent auditor reviewing a mathematical proof. Assume the proof may be wrong.
+
+CLAIM:
+{lemma_statement}
+
+ASSUMPTIONS:
+{lemma_assumptions}
+
+PROOF:
+{lemma_proof}
+
+DOMAIN-SPECIFIC AUDIT TESTS:
+{domain_audit_tests}
+
+KNOWN OBSTACLES AND PITFALLS FROM LITERATURE:
+{literature_context}
+
+TASK:
+Independently verify this proof. You are reviewing work produced by another system. Do not assume it is correct.
+
+AUDIT PROTOCOL:
+1. Check definitions/notation consistency
+2. Check dependency usage: are they invoked legitimately?
+3. Stress-test: attempt to produce a counterexample for any step that looks too strong
+4. Check edge cases and missing hypotheses
+5. Verify quantifier order and scope
+6. Look for hidden assumptions not explicitly stated
+
+OUTPUT FORMAT (valid JSON only):
+{{
+  "verdict": "PASS|FAIL|UNCERTAIN",
+  "confidence": 0.0,
+  "issues": [
+    {{
+      "severity": "critical|major|minor",
+      "location": "[S#]",
+      "summary": "brief description",
+      "detail": "detailed explanation",
+      "patch": "minimal fix or lemma needed"
+    }}
+  ],
+  "feedback": "Your independent assessment"
+}}
+
+VERDICT RULES:
+- PASS: You can validate every critical inference. Confidence 0.7-1.0.
+- FAIL: You find a gap that prevents the claim from following. Must cite specific steps.
+- UNCERTAIN: Verification would require additional lemmas not provided. Explain what's needed.
+
+REQUIREMENTS:
+- You MUST reference proof step labels [S#] for every issue
+- If FAIL/UNCERTAIN, give the minimal patch (new assumption or lemma) needed
+- Be thorough but fair: do not fail proofs for minor notation issues
+
+IMPORTANT:
+Return valid JSON ONLY. No markdown, no prose outside JSON.

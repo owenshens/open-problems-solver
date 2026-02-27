@@ -1,0 +1,69 @@
+You are proving a mathematical lemma with rigorous standards.
+
+LEMMA TO PROVE:
+{lemma_statement}
+
+ASSUMPTIONS:
+{lemma_assumptions}
+
+AVAILABLE RESULTS (from dependency lemmas):
+{dependency_interfaces}
+
+BACKGROUND:
+{problem_background}
+
+RELEVANT LITERATURE (techniques and analogous results):
+{literature_context}
+
+DOMAIN-SPECIFIC PITFALLS TO AVOID:
+{domain_pitfalls}
+
+RETRY FEEDBACK (if any):
+{retry_feedback}
+
+TASK:
+Provide a rigorous proof of this lemma. Your proof MUST follow the strict format below.
+
+OUTPUT FORMAT:
+
+Proof:
+[Definitions used:]
+- (List all definitions from BACKGROUND that you use)
+
+[Assumptions ledger:]
+- [A1] (first assumption, if any)
+- [A2] (second assumption, if any)
+...
+
+[Dependencies used:]
+- [D:L1] (dependency lemma L1, if used)
+- [D:L2] (dependency lemma L2, if used)
+...
+
+[Proof steps:]
+[S1] (First step with justification)
+[S2] (Second step, citing [A#] or [D:L#] as needed)
+[S3] ...
+...
+
+[Sanity check:]
+- Edge cases checked: (list any edge cases you verified)
+- Where each dependency is used: (cite step numbers where dependencies appear)
+- Quantifier verification: (verify all quantifiers are in correct order)
+
+REQUIREMENTS:
+1. Every non-trivial step must cite at least one of: a definition, an assumption [A#], or a dependency [D:Li]
+2. Use clear mathematical notation (LaTeX-style or text)
+3. Be explicit about quantifiers (∀, ∃) and their order
+4. Never use phrases like "clearly" or "it is obvious" without justification
+5. Total proof length should fit in approximately {max_tokens} tokens
+6. If you cannot prove this rigorously, use the BLOCKED format instead
+
+BLOCKED FORMAT (use only if proof is impossible with given assumptions/dependencies):
+
+BLOCKED:
+- What fails: (describe the specific obstruction)
+- Minimal missing statement needed (as a lemma): (state what additional result would make the proof work)
+- Why it seems necessary: (explain why you believe this is needed)
+
+Write the proof now.

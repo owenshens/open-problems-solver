@@ -1,0 +1,38 @@
+{
+  "id": "erdos_1082",
+  "statement": "For any set P of n points in the plane with no three collinear, the number of distinct distances D(P) satisfies D(P) >= floor(n/2).",
+  "win_condition": "Find a set P with |P|=n points in the plane, no three collinear, such that D(P) < floor(n/2).",
+  "domain": "Combinatorial Geometry",
+  "background": "The regular n-gon achieves D(P) = floor(n/2). The pinned variant (fixing one point and counting distances from it) has been disproved with a finite counterexample using two concentric regular N-gons. The global conjecture remains open.",
+  "known_bounds": "Regular n-gon gives D(P) = floor(n/2). This is conjectured to be minimal.",
+  "tags": ["erdos-problems", "distinct-distances", "combinatorial-geometry", "open-problem"],
+  "context_documents": [
+    "@../../../Search/Question 1082"
+  ],
+  "strategy_suggestions": [
+    {
+      "suggestion": "Try two concentric regular N-gons first (Family B from context document)",
+      "rationale": "Lowest parameter dimension. Pinned counterexample used this family. Parameters reduce to (r, Delta) where constraints are quadratic in r.",
+      "priority": "high"
+    },
+    {
+      "suggestion": "Focus on odd N values where cyclotomic algebra is richer",
+      "rationale": "Special values like N=5,7,9,21 have low-degree trigonometric identities that create more distance collisions.",
+      "priority": "medium"
+    },
+    {
+      "suggestion": "Try 3-layer constructions (m=3) only after m=2 is exhausted",
+      "rationale": "Parameter space grows with layers. Constraint one extra parameter at a time.",
+      "priority": "low"
+    }
+  ],
+  "prior_attempts": [
+    {
+      "description": "Exhaustive 2-layer C_N scan for odd N (from Erdos Problems forum thread)",
+      "result": "No global counterexample found",
+      "parameter_range": "N in [3, 249], r from constraint-derived algebraic points",
+      "what_was_ruled_out": "All 2-layer C_N configs with odd N <= 249 and degree <= 4 constraint-derived r values"
+    }
+  ],
+  "search_constraints": []
+}

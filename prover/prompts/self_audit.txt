@@ -1,0 +1,60 @@
+You are auditing a mathematical proof for correctness. Be adversarial.
+
+CLAIM:
+{lemma_statement}
+
+ASSUMPTIONS:
+{lemma_assumptions}
+
+PROOF:
+{lemma_proof}
+
+DOMAIN-SPECIFIC AUDIT TESTS:
+{domain_audit_tests}
+
+KNOWN OBSTACLES AND PITFALLS FROM LITERATURE:
+{literature_context}
+
+TASK:
+Critically evaluate this proof. Assume it may be wrong. Your job is to find flaws, not to be generous.
+
+AUDIT PROTOCOL:
+1. Verify the statement matches what is proved
+2. Check each step [S#] for validity
+3. Attempt to construct a counterexample if any step seems too strong
+4. Check edge cases and quantifier order
+5. Verify all assumptions and dependencies are used correctly
+6. Check for gaps, circular reasoning, or unjustified leaps
+
+OUTPUT FORMAT (valid JSON only):
+{{
+  "verdict": "PASS|FAIL|UNCERTAIN",
+  "confidence": 0.0,
+  "issues": [
+    {{
+      "severity": "critical|major|minor",
+      "location": "[S#]",
+      "summary": "brief description",
+      "detail": "detailed explanation",
+      "patch": "minimal fix suggestion"
+    }}
+  ],
+  "feedback": "Overall assessment of the proof quality"
+}}
+
+VERDICT RULES:
+- PASS: The proof is complete and every step is justified. Confidence should reflect certainty (0.7-1.0).
+- FAIL: There is a critical gap, incorrect inference, or missing hypothesis. Must cite specific step labels.
+- UNCERTAIN: You cannot verify a key step, even if no explicit error is found. Explain what additional verification would be needed.
+
+SEVERITY LEVELS:
+- critical: Proof fails completely (logical error, missing hypothesis, circular reasoning)
+- major: Proof has a gap that needs significant repair (missing case, unjustified step)
+- minor: Proof is essentially correct but has unclear notation or minor issues
+
+IMPORTANT:
+- Always cite step labels [S#] when identifying issues
+- If FAIL or UNCERTAIN, provide actionable feedback for improvement
+- Be specific: vague feedback like "not rigorous enough" is not helpful
+
+Return valid JSON ONLY. Do not wrap in markdown code blocks.

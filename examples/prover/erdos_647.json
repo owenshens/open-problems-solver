@@ -1,0 +1,7 @@
+{
+  "id": "erdos_647",
+  "statement": "Determine whether there exists an integer n > 24 such that max_{m<n}(m + τ(m)) ≤ n + 2, where τ(m) denotes the number of divisors of m.",
+  "background": "This problem was posed by Erdős and Selfridge. It is known that n=24 satisfies the condition. The bound n+2 is optimal since max(τ(n-1)+n-1, τ(n-2)+n-2) ≥ n+2 always holds. Erdős conjectured that either: (1) no such n > 24 exists, or (2) if such n exist, the maximum gap grows unboundedly. Under Schinzel's Hypothesis H, for every fixed k, infinitely many n satisfy the condition when restricted to m ∈ (n-k, n).",
+  "domain": "Number Theory",
+  "tags": ["erdos-problems", "divisor-function", "combinatorial-number-theory", "gap-problems", "open-problem"]
+}

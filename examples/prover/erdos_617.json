@@ -1,0 +1,7 @@
+{
+  "id": "erdos_617",
+  "statement": "Let r >= 3. If the edges of K_{r^2+1} are r-coloured then there exist r+1 vertices with at least one colour missing on the edges of the induced K_{r+1}.",
+  "background": "This is a conjecture of Erdős and Gyárfás concerning the absence of balanced colorings in complete graphs. An r-colouring of K_n assigns one of r colours to each edge. The claim is that for r >= 3, in any r-colouring of K_{r^2+1}, there must be a set of r+1 vertices whose induced complete subgraph K_{r+1} is missing at least one of the r colours. Erdős and Gyárfás proved the result for r=3 and r=4. They also showed the conjecture fails when r=2, and that the property is false for infinitely many r if r^2+1 is replaced by r^2. The problem remains open for general r >= 5. The conjecture has been formalized in Lean. It is listed as falsifiable — it could potentially be disproved by finding a finite counterexample.",
+  "domain": "combinatorics",
+  "tags": ["erdos-problems", "graph-theory", "ramsey-theory", "edge-coloring", "complete-graphs", "open-problem"]
+}

@@ -1,0 +1,7 @@
+{
+  "id": "erdos_993",
+  "statement": "Is the independent set sequence of any tree or forest unimodal? Specifically, if i_k(G) counts independent sets of size k in graph G, and T is any tree or forest, does there exist some m ≥ 0 such that: i_0(T) ≤ i_1(T) ≤ ... ≤ i_m(T) ≥ i_{m+1}(T) ≥ i_{m+2}(T) ≥ ...",
+  "background": "This question originated from Alavi, Malde, Schwenk, and Erdős. They demonstrated the conjecture is false for general graphs, with every possible pattern of inequalities achieved by some graph. However, the question remains open for trees and forests. Related work by Schwenk proved the edge-independent set sequence is unimodal for any graph. The problem is falsifiable, meaning it could be disproved with a finite counterexample (a specific tree or forest whose independent set sequence is not unimodal).",
+  "domain": "Graph Theory",
+  "tags": ["erdos-problems", "graph-theory", "independent-sets", "unimodality", "trees", "forests", "open-problem", "combinatorics"]
+}

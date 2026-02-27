@@ -1,0 +1,69 @@
+You are decomposing a mathematical proof into a dependency DAG of lemmas.
+
+PROBLEM:
+{problem_statement}
+
+BACKGROUND:
+{problem_background}
+
+DOMAIN: {problem_domain}
+
+RELEVANT LITERATURE:
+{literature_context}
+
+TASK:
+Decompose this problem into 3-8 intermediate lemmas that form a valid proof plan.
+
+REQUIREMENTS:
+1. No cycles: Dependencies must form a DAG (directed acyclic graph)
+2. Each lemma statement must be checkable and independent
+3. Each lemma must have explicit assumptions
+4. Lemmas together must imply the main result
+5. Each lemma should be "one-shot provable" (no hidden sublemmas needed)
+
+INTERNAL PROTOCOL (do silently):
+- Generate 2-3 candidate decompositions
+- Pick the one with the cleanest DAG and minimal cross-dependencies
+- Ensure dependency chains are short (prefer depth ≤ 3)
+- Ensure each lemma has clear inputs (assumptions/dependencies) and outputs (the statement)
+
+OUTPUT FORMAT (valid JSON only):
+{{
+  "lemmas": [
+    {{
+      "id": "L1",
+      "statement": "Clear mathematical statement to prove",
+      "assumptions": ["assumption 1", "assumption 2", ...],
+      "dependencies": [],
+      "justification": "Why this lemma is needed in the proof strategy",
+      "failure_modes": ["common pitfall 1", "common pitfall 2"],
+      "proof_sketch": "2-4 sentence outline of proof approach"
+    }},
+    {{
+      "id": "L2",
+      "statement": "...",
+      "assumptions": [],
+      "dependencies": ["L1"],
+      "justification": "...",
+      "failure_modes": [...],
+      "proof_sketch": "..."
+    }},
+    ...
+  ],
+  "proof_strategy": "Overall approach: how lemmas combine to prove main result"
+}}
+
+CONSTRAINTS:
+- Maximum 8 lemmas (3-8 recommended)
+- Maximum depth 3 (shortest path from axioms to main result)
+- Each lemma should have ≤ 3 dependencies
+- Avoid fan-out > 6 (one lemma depended on by more than 6 others)
+
+QUALITY CHECKS:
+- Can each lemma be stated independently? (no vague references like "the previous result")
+- Does the dependency order make mathematical sense?
+- Are assumptions minimal for each lemma?
+- Is the proof_strategy coherent?
+
+IMPORTANT:
+Return valid JSON ONLY. Do not wrap in markdown code blocks.

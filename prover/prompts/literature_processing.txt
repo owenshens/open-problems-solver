@@ -1,0 +1,57 @@
+PROBLEM STATEMENT:
+{problem_statement}
+
+BACKGROUND KNOWLEDGE:
+{problem_background}
+
+MATHEMATICAL DOMAIN: {problem_domain}
+
+======================================================================
+RAW LITERATURE SURVEY (from Phase 0):
+======================================================================
+{raw_literature}
+======================================================================
+
+======================================================================
+TASK: Process and Structure Literature Findings
+======================================================================
+
+Transform the raw literature survey above into a structured, categorized,
+confidence-scored synthesis. Follow the LITERATURE_PROCESSOR_CORE protocol.
+
+Categorize every substantive finding into exactly one of:
+- known_proof_strategies
+- existing_partial_proofs
+- analogous_proved_theorems
+- proof_techniques_and_tools
+- known_obstacles_and_pitfalls
+
+Output valid JSON matching this schema:
+{{
+  "findings": [
+    {{
+      "id": "finding_001",
+      "claim": "...",
+      "source_description": "...",
+      "source_type": "journal_paper|arxiv_paper|textbook|survey|forum_post|blog|lecture_notes|unknown",
+      "confidence": 0.0,
+      "confidence_rationale": "...",
+      "recency": "...",
+      "category": "known_proof_strategies|existing_partial_proofs|analogous_proved_theorems|proof_techniques_and_tools|known_obstacles_and_pitfalls",
+      "relevance_score": 0.0,
+      "actionability": "high|medium|low",
+      "corroborated_by": [],
+      "contradicted_by": []
+    }}
+  ],
+  "categories": {{
+    "known_proof_strategies": ["finding_001"],
+    "existing_partial_proofs": [],
+    "analogous_proved_theorems": [],
+    "proof_techniques_and_tools": [],
+    "known_obstacles_and_pitfalls": []
+  }},
+  "executive_summary": "...",
+  "gaps_identified": ["..."],
+  "contradictions": ["..."]
+}}

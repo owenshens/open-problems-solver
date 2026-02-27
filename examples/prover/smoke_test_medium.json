@@ -1,0 +1,8 @@
+{
+  "id": "smoke_test_medium",
+  "statement": "Every compact metric space is complete",
+  "background": "A metric space (X,d) is compact if every open cover has a finite subcover. A metric space is complete if every Cauchy sequence converges. We need to prove that compactness implies completeness.",
+  "domain": "topology",
+  "difficulty": "graduate",
+  "expected_lemmas": 3
+}

@@ -1,0 +1,90 @@
+Decompose the lemma following the SPECIFIC decomposition strategy provided.
+
+LEMMA TO DECOMPOSE:
+Lemma ID: {lemma_id}
+Statement: {lemma_statement}
+Assumptions: {lemma_assumptions}
+
+DECOMPOSITION STRATEGY (FOLLOW THIS):
+{strategy_rationale}
+
+PROBLEM CONTEXT:
+Domain: {problem_domain}
+Background: {problem_background}
+
+CURRENT STATE:
+- Depth: {current_depth} / {max_depth}
+
+YOUR TASK:
+Generate 2-6 sub-lemmas that FOLLOW the decomposition strategy above.
+
+CRITICAL REQUIREMENTS:
+
+1. **Follow the strategy** - The sub-lemmas must align with the strategy rationale
+   - If strategy says "horizontal split", create parallel independent sub-goals
+   - If strategy says "vertical chain", create sequential dependencies
+   - If strategy says "case analysis", split by cases
+   - If strategy says "helper lemma", introduce auxiliary results first
+
+2. **Simplicity** - Each sub-lemma must be SIMPLER than the parent
+   - Fewer quantifiers, shorter statement, more concrete
+   - Ideally "one-shot provable" without further decomposition
+
+3. **Completeness** - Sub-lemmas must TOGETHER imply the parent
+   - No logical gaps
+   - Composition path must be clear
+
+4. **Clean dependencies** - Form a valid DAG
+   - Sub-lemmas can depend on each other
+   - Dependencies must be explicit in the "dependencies" field
+   - Use IDs like "1", "2", "3" for sub-lemmas (will be auto-prefixed)
+
+5. **Proof strategy** - Explain how sub-lemmas prove the parent
+   - Make the integration path explicit
+   - Show how the strategy achieves the goal
+
+EXAMPLE (for strategy "Horizontal split: continuity + boundedness"):
+{{
+  "lemmas": [
+    {{
+      "id": "1",
+      "statement": "f is continuous on [a,b]",
+      "assumptions": ["f: [a,b] → ℝ", "f compact"],
+      "dependencies": []
+    }},
+    {{
+      "id": "2",
+      "statement": "f is bounded on [a,b]",
+      "assumptions": ["f: [a,b] → ℝ", "f compact"],
+      "dependencies": []
+    }},
+    {{
+      "id": "3",
+      "statement": "Continuous + bounded implies attains max/min",
+      "assumptions": [],
+      "dependencies": ["1", "2"]
+    }}
+  ],
+  "proof_strategy": "Lemmas 1 and 2 establish key properties independently. Lemma 3 combines them to prove the parent statement about attaining extrema."
+}}
+
+OUTPUT FORMAT (valid JSON only):
+{{
+  "lemmas": [
+    {{
+      "id": "1",
+      "statement": "[Clear, specific mathematical statement aligned with strategy]",
+      "assumptions": ["[Explicit assumptions]"],
+      "dependencies": []
+    }},
+    {{
+      "id": "2",
+      "statement": "[Another sub-lemma following the strategy]",
+      "assumptions": ["[Assumptions]"],
+      "dependencies": ["1"]  // if depends on lemma 1
+    }}
+  ],
+  "proof_strategy": "[Explain how these sub-lemmas, following the strategy, prove the parent]"
+}}
+
+REMEMBER: Your decomposition must FOLLOW the strategy rationale provided above!

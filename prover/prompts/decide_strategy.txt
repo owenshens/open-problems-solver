@@ -1,0 +1,198 @@
+You are deciding whether to attempt a DIRECT proof or DECOMPOSE into sub-problems.
+
+LEMMA TO ANALYZE:
+Lemma ID: {lemma_id}
+Statement: {lemma_statement}
+Assumptions: {lemma_assumptions}
+
+AVAILABLE DEPENDENCIES:
+{dependency_interfaces}
+
+PROBLEM CONTEXT:
+Domain: {problem_domain}
+Background: {problem_background}
+
+CURRENT STATE:
+- Recursion depth: {current_depth} / {max_depth}
+- Retry count: {retry_count} / {max_retries}
+
+PRIOR CONTEXT (from previous attempts):
+{context_summary}
+
+═══════════════════════════════════════════════════════════════════════════
+CORE PHILOSOPHY: DIRECT IS THE DEFAULT
+═══════════════════════════════════════════════════════════════════════════
+
+DIRECT proof is the default choice. Decomposition must be JUSTIFIED by a
+clear mathematical necessity - not by available depth budget, statement
+length, or the desire to "be safe." Unnecessary decomposition wastes
+resources and creates deep chains of trivial sub-lemmas.
+
+═══════════════════════════════════════════════════════════════════════════
+STEP 1: SCOPE ANALYSIS (What exactly is this lemma claiming?)
+═══════════════════════════════════════════════════════════════════════════
+
+Before deciding anything, precisely characterize what this lemma asserts:
+
+A) Is this a SINGLE mathematical claim, or MULTIPLE logically independent claims?
+   - Single claim: "For all x, P(x)" or "There exists x such that P(x)"
+   - Multiple claims: "P holds AND Q holds AND R holds" (each independently nontrivial)
+
+B) What is the MATHEMATICAL SCOPE of this claim?
+   - Narrow scope: concerns one object, one step, or follows immediately from definitions
+   - Broad scope: concerns an entire family, or requires chaining multiple distinct results
+
+C) Does this lemma have a NATURAL MATHEMATICAL PROOF STRUCTURE?
+   - Can you sketch the proof in 1-3 sentences? (If yes → likely direct)
+   - Would any standard mathematician split this into sub-lemmas to publish? (If no → direct)
+
+═══════════════════════════════════════════════════════════════════════════
+STEP 2: PROVABILITY ANALYSIS (Can this be proved directly?)
+═══════════════════════════════════════════════════════════════════════════
+
+Assess whether a direct proof is achievable:
+
+A) PREREQUISITE CHECK: Do available dependencies provide everything needed?
+   - List what the proof requires vs. what dependencies provide
+   - If dependencies cover all prerequisites → strong case for direct
+   - If a non-trivial intermediate result is missing from dependencies → may need decompose
+
+B) PROOF STRATEGY: Can you sketch a concrete proof approach?
+   - Is there a standard technique (induction, double-counting, bijection, etc.)?
+   - Would a competent mathematician in this domain prove this in one sitting?
+   - If you can sketch the proof outline → strong case for direct
+
+C) COMPLEXITY CHECK: Is this genuinely one coherent argument?
+   - Could the proof be written as one connected chain of reasoning?
+   - OR does it require establishing independent facts that then get combined?
+   - One connected argument → direct; genuinely independent parts → consider decompose
+
+═══════════════════════════════════════════════════════════════════════════
+STEP 3: DECOMPOSITION JUSTIFICATION (Is decompose mathematically necessary?)
+═══════════════════════════════════════════════════════════════════════════
+
+Decompose ONLY if at least one of these holds with strong justification:
+
+VALID REASON 1 - MISSING INTERMEDIATE RESULT:
+  The proof requires establishing a non-trivial intermediate fact that is NOT
+  in the available dependencies, AND that intermediate fact is independently
+  verifiable and reusable. This is not just "the proof has multiple steps" -
+  a two-page proof can still be one direct proof.
+  Example: Proving "A → C" but the key bridge "A → B" is a substantial result
+  that deserves its own lemma.
+
+VALID REASON 2 - GENUINELY INDEPENDENT CLAIMS:
+  The lemma asserts multiple LOGICALLY INDEPENDENT mathematical claims where
+  each claim requires its own non-trivial argument. Splitting provides clean
+  mathematical structure, not just proof organization.
+  Example: "X is both compact AND connected" where each requires different machinery.
+
+VALID REASON 3 - DIRECT PROOF DEMONSTRABLY FAILED:
+  Previous direct attempts (retry_count > 0) have failed with concrete evidence
+  that the approach is blocked, AND the blocking issue suggests a specific
+  sub-problem that needs to be isolated.
+
+INVALID REASONS (never use these to justify decompose):
+  ✗ "There is recursion budget remaining" - depth budget ≠ reason to decompose
+  ✗ "The statement is long or has many quantifiers" - complexity of statement ≠ need for decompose
+  ✗ "Being cautious" or "to be safe" - direct proof can be retried if it fails
+  ✗ "Might be hard" - difficulty alone does not require decomposition
+  ✗ "The sub-lemmas would also be interesting" - mathematical elegance ≠ operational necessity
+
+═══════════════════════════════════════════════════════════════════════════
+FORCED DECISIONS (override everything above)
+═══════════════════════════════════════════════════════════════════════════
+
+- If depth >= {max_depth} - 2: MUST choose "direct" (no recursion room left)
+- If retry_count >= {max_retries} - 1: MUST choose "decompose" (direct exhausted)
+
+═══════════════════════════════════════════════════════════════════════════
+CALIBRATION EXAMPLES
+═══════════════════════════════════════════════════════════════════════════
+
+EXAMPLE A → DIRECT (even though it looks complex):
+  Lemma: "For any tree T with n vertices and independence number α,
+          every maximal independent set has size ≥ ⌈(n-α+1)/2⌉."
+  Analysis:
+    - Scope: Single claim about maximal independent sets in trees.
+    - Provability: Standard greedy matching argument; can sketch in 3 sentences.
+    - Decompose reason: None - this is one coherent inductive argument.
+  Decision: DIRECT
+
+EXAMPLE B → DIRECT (even without dependencies):
+  Lemma: "Forests are König-Egerváry graphs."
+  Analysis:
+    - Scope: Single structural membership claim.
+    - Provability: Follows from bipartiteness + König's theorem; 2-line argument.
+    - Decompose reason: None - references a known result.
+  Decision: DIRECT
+
+EXAMPLE C → DECOMPOSE (genuinely independent claims):
+  Lemma: "The independence polynomial of F satisfies the full unimodality
+          conjecture via a new technique involving spectral graph theory."
+  Analysis:
+    - Scope: Novel result requiring establishing new machinery.
+    - Provability: No known proof exists; requires building new theory.
+    - Decompose reason: VALID REASON 1 - requires establishing substantial
+      intermediate spectral bounds that are not in dependencies.
+  Decision: DECOMPOSE
+
+EXAMPLE D → DIRECT (retry first, not decompose):
+  Lemma (retry_count=1): "i_k(F)² ≥ i_{{k-1}}(F)·i_{{k+1}}(F) for forests."
+  Analysis:
+    - Scope: Single log-concavity inequality claim.
+    - Provability: Direct proof attempt failed once; may need better strategy.
+    - Decompose reason: ONE failure is insufficient evidence decomposition helps.
+  Decision: DIRECT (try a different direct proof strategy)
+
+═══════════════════════════════════════════════════════════════════════════
+DECISION PROCESS (follow strictly in order)
+═══════════════════════════════════════════════════════════════════════════
+
+Step 1: Check forced decisions
+  - depth >= {max_depth} - 2? → "direct" (no room left)
+  - retry_count >= {max_retries} - 1? → "decompose" (direct exhausted)
+
+Step 2: Scope analysis
+  - Is this a single mathematical claim or multiple genuinely independent claims?
+  - What is the natural mathematical proof structure?
+
+Step 3: Provability analysis
+  - Sketch the direct proof approach in 2-3 sentences
+  - Do dependencies provide all needed prerequisites?
+  - Can a mathematician prove this in one coherent argument?
+
+Step 4: Decomposition justification
+  - Does VALID REASON 1, 2, or 3 apply with strong evidence?
+  - If none applies → choose DIRECT
+  - If one applies → choose DECOMPOSE only if the sub-problems are clearly
+    simpler and directly provable (not just reformulations of the parent)
+
+Step 5: Final decision
+  - DEFAULT: "direct" unless Step 4 produced strong decompose justification
+  - If decompose: articulate precisely which valid reason applies and what
+    the sub-lemmas will be
+
+═══════════════════════════════════════════════════════════════════════════
+OUTPUT FORMAT
+═══════════════════════════════════════════════════════════════════════════
+
+Provide valid JSON only (no markdown, no extra text):
+
+{{
+  "decision": "direct",  // or "decompose"
+  "reasoning": "Follow this exact structure:
+1. Scope: [Single claim / Multiple independent claims - explain precisely]
+2. Proof sketch: [2-3 sentence outline of how to prove this directly]
+3. Prerequisite check: [What does the proof need vs. what dependencies provide?]
+4. Decompose justification: [Which valid reason applies, OR state 'none - choose direct']
+5. Final verdict: [Why this decision, NOT based on depth budget]",
+  "confidence": 0.85,
+  "decomposition_strategy_hint": "Only if decompose: describe the sub-lemmas and why each is simpler"
+}}
+
+═══════════════════════════════════════════════════════════════════════════
+REMEMBER: Depth budget is a CONSTRAINT (forces direct near limit), not a
+REASON to decompose. Never justify decompose by saying there is budget
+remaining. Justify decompose only by mathematical necessity.
+═══════════════════════════════════════════════════════════════════════════

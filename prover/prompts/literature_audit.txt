@@ -1,0 +1,23 @@
+PROBLEM STATEMENT:
+{problem_statement}
+
+MATHEMATICAL DOMAIN: {problem_domain}
+
+======================================================================
+RAW LITERATURE SURVEY (original, for comparison):
+======================================================================
+{raw_literature}
+======================================================================
+
+PROCESSED LITERATURE (to audit):
+{processed_literature}
+
+======================================================================
+TASK: Audit Processed Literature
+======================================================================
+
+Compare the processed literature against the raw survey. Check for
+completeness, accuracy, proper categorization, and identified contradictions.
+Follow the LITERATURE_AUDITOR_CORE protocol.
+
+Respond with JSON only.

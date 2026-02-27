@@ -1,0 +1,7 @@
+{
+  "id": "medium-primes-4n3",
+  "statement": "Prove that there are infinitely many prime numbers p such that p ≡ 3 (mod 4).",
+  "background": "A prime is an integer p>1 whose only positive divisors are 1 and p. For integers a,b and n≥1, write a≡b (mod n) if n divides a-b. Facts you may use: (i) If p is prime and p | ab then p | a or p | b. (ii) If a≡b (mod n) and c≡d (mod n) then ac≡bd (mod n). (iii) For any integer m, m^2 ≡ 0 or 1 (mod 4).",
+  "domain": "number theory",
+  "tags": ["primes", "congruences", "modular arithmetic", "number theory"]
+}

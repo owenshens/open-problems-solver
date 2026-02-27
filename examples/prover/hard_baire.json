@@ -1,0 +1,7 @@
+{
+  "id": "hard-baire",
+  "statement": "(Baire Category Theorem) Let (X,d) be a complete metric space and let (U_n)_{n\u2265 1} be a sequence of open dense subsets of X. Prove that \u22c2_{n=1}^\u221e U_n is dense in X.",
+  "background": "In a metric space (X,d), an open ball is B(x,r) = {y: d(x,y) < r}. A set D⊆X is dense if every nonempty open ball intersects D. A metric space is complete if every Cauchy sequence converges. You may use: (i) If (F_n) is a nested sequence of nonempty closed subsets with diameters tending to 0 in a complete metric space, then \u22c2_n F_n is nonempty. (ii) If U is open and x∈U, then there exists r>0 with B(x,r)⊆U.",
+  "domain": "analysis/topology",
+  "tags": ["baire category", "complete metric space", "dense open", "analysis", "topology"]
+}

@@ -1,0 +1,105 @@
+You are auditing a proof decomposition plan before proving begins.
+
+PROBLEM STATEMENT:
+{problem_statement}
+
+BACKGROUND KNOWLEDGE:
+{problem_background}
+
+DOMAIN:
+{problem_domain}
+
+PROPOSED DECOMPOSITION:
+{proposed_lemmas}
+
+PROOF STRATEGY:
+{proof_strategy}
+
+RELEVANT LITERATURE (strategies and known obstacles):
+{literature_context}
+
+TASK:
+Audit this decomposition plan to verify it is mathematically sound BEFORE we spend time proving the lemmas.
+
+CRITICAL AUDIT CHECKS:
+1. **Completeness**: Do the lemmas, taken together, actually imply the problem statement?
+2. **Provability**: Is each lemma provable from its stated assumptions + dependencies + background?
+3. **Missing Steps**: Are there gaps in the decomposition? Do we jump from basic facts to complex conclusions?
+4. **Assumption Sufficiency**: Does each lemma have all necessary assumptions stated explicitly?
+5. **Scope Check**: Are lemmas appropriately scoped? (Not too broad, not too narrow)
+6. **Dependency Validity**: Do dependencies make sense? Is the order logical?
+7. **Strategy Soundness**: Is the overall proof strategy viable?
+8. **Background Usage**: Are background definitions/axioms sufficient for this proof?
+
+AUDIT PROTOCOL:
+- Start from the problem statement
+- Trace backwards: what would we need to prove it?
+- Check each proposed lemma: does it help? Is it provable?
+- Look for missing intermediate steps
+- Check if assumptions are realistic (can they be verified?)
+- Verify the dependency DAG makes mathematical sense
+
+OUTPUT FORMAT (valid JSON only):
+{{
+  "verdict": "ACCEPT|REVISE|REJECT",
+  "confidence": 0.0,
+  "issues": [
+    {{
+      "lemma_id": "L1|L2|OVERALL",
+      "severity": "critical|major|minor",
+      "category": "completeness|provability|missing_step|assumptions|scope|dependencies|strategy",
+      "summary": "brief description",
+      "detail": "detailed explanation of the issue",
+      "patch": "specific fix needed (e.g., 'Add intermediate lemma: ...', 'Revise L2 to state ...')"
+    }}
+  ],
+  "coverage_gaps": ["description of missing intermediate steps or lemmas"],
+  "assumption_conflicts": ["any conflicting or unrealistic assumptions"],
+  "recommendation": "accept|revise_plan|add_lemmas|reject"
+}}
+
+VERDICT RULES:
+- ACCEPT: Decomposition is sound and complete. All lemmas are provable and compose to prove the theorem. Confidence ≥ 0.75.
+- REVISE: Decomposition has fixable issues (missing assumptions, scope problems, minor gaps). Can be fixed by regenerating plan with feedback.
+- REJECT: Decomposition is fundamentally broken (doesn't prove theorem, impossible lemmas, major gaps). Would require complete redesign.
+
+RECOMMENDATION LEVELS:
+- accept: Proceed to proving (ACCEPT with confidence ≥ 0.8)
+- revise_plan: Regenerate decomposition with feedback (REVISE or ACCEPT with confidence < 0.8)
+- add_lemmas: Add specific missing lemmas to current plan
+- reject: Problem requires different approach (REJECT)
+
+IMPORTANT:
+- Be thorough but practical: don't fail plans for minor notation issues
+- Focus on mathematical soundness, not style
+- If issues found, provide SPECIFIC patches (not vague suggestions)
+- Return valid JSON ONLY. No markdown, no prose outside JSON.
+
+EXAMPLES OF GOOD vs BAD DECOMPOSITIONS:
+
+GOOD:
+Problem: "Prove continuous image of compact set is compact"
+Lemmas:
+- L1: "Every open cover of f(K) pulls back to open cover of K via continuity"
+- L2: "If K has finite subcover, then f(K) has corresponding finite subcover"
+- Main: L1 + L2 + compactness definition → Result
+✓ Complete: covers all steps from compactness of K to compactness of f(K)
+✓ Provable: each lemma follows from stated assumptions
+✓ Logical: dependency order makes sense
+
+BAD:
+Problem: "Prove continuous image of compact set is compact"
+Lemmas:
+- L1: "Images of compact sets are compact"
+✗ Incomplete: L1 IS the theorem (no decomposition!)
+✗ Circular: can't prove L1 without proving the original problem
+
+BAD:
+Problem: "Prove √2 is irrational"
+Lemmas:
+- L1: "All real numbers are either rational or irrational"
+- L2: "√2 is a real number"
+✗ Incomplete: L1+L2 don't prove √2 is irrational, just that it's one or the other
+✗ Missing: Need contradiction argument (assume rational, derive contradiction)
+
+Perform the audit now.

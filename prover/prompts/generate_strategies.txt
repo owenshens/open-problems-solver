@@ -1,0 +1,82 @@
+Generate {num_strategies} diverse decomposition strategies for the BLOCKED lemma.
+
+LEMMA (BLOCKED):
+Lemma ID: {lemma_id}
+Statement: {lemma_statement}
+Assumptions: {lemma_assumptions}
+
+BLOCKING REASON:
+{blocking_reason}
+
+PRIOR CONTEXT (what has been tried):
+{context_summary}
+
+PROBLEM CONTEXT:
+Domain: {problem_domain}
+Background: {problem_background}
+
+CURRENT STATE:
+- Depth: {current_depth} / {max_depth}
+
+YOUR TASK:
+Generate {num_strategies} DISTINCT, PROMISING decomposition strategies. Each strategy should:
+
+1. **Have a clear rationale** - Explain why this decomposition approach might work
+2. **Be different from others** - Each strategy should use a different mathematical technique
+3. **Avoid failed approaches** - Don't repeat strategies from context that already failed
+4. **Be viable** - Ensure there's room for decomposition (depth < max_depth)
+
+STRATEGY TYPES TO CONSIDER:
+
+**Horizontal Decomposition:**
+- Break into parallel sub-goals (all needed to prove parent)
+- Example: "Prove A and B separately, then combine"
+
+**Vertical Decomposition:**
+- Create a chain of lemmas where each builds on previous
+- Example: "First prove L1, then use it to prove L2, then use both for parent"
+
+**Case Analysis:**
+- Split by cases based on problem structure
+- Example: "Consider case n even vs n odd separately"
+
+**Helper Lemmas:**
+- Introduce auxiliary results that make the proof easier
+- Example: "First establish a helper inequality, then use it in main proof"
+
+**Strengthen/Weaken:**
+- Prove a stronger claim (easier to use later) or weaken assumptions
+- Example: "Prove a stronger upper bound first"
+
+**Granular Breakdown:**
+- Very fine-grained decomposition into tiny, obvious steps
+- Example: "Break into 4-6 very simple lemmas"
+
+CRITICAL REQUIREMENTS:
+1. **Diverse strategies** - Don't generate 3 variants of the same approach
+2. **Context-aware** - Learn from failed_strategies and integration_failures
+3. **Ordered by promise** - Most promising strategy first
+4. **Specific rationale** - Explain exactly why this might work for THIS lemma
+
+OUTPUT FORMAT (valid JSON only):
+{{
+  "strategies": [
+    {{
+      "rationale": "Horizontal split: Prove continuity and boundedness separately, then combine for compactness",
+      "context_used": ["Avoids parent:vertical_chain which failed integration"],
+      "estimated_difficulty": "medium"
+    }},
+    {{
+      "rationale": "Helper lemma approach: First prove Bolzano-Weierstrass, then use it for sequential compactness",
+      "context_used": ["Builds on successful_approaches from sibling lemmas"],
+      "estimated_difficulty": "low"
+    }},
+    {{
+      "rationale": "Case analysis: Split proof by finite vs infinite subsets",
+      "context_used": ["Fresh approach not tried before"],
+      "estimated_difficulty": "high"
+    }}
+  ]
+}}
+
+Generate exactly {num_strategies} strategies, ordered by estimated promise (best first).

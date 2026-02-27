@@ -1,0 +1,8 @@
+{
+  "id": "smoke_test_simple",
+  "statement": "If f: R → R is continuous and f(a) < 0 < f(b), then there exists c ∈ (a,b) such that f(c) = 0",
+  "background": "This is the Intermediate Value Theorem (IVT), a fundamental result in real analysis. We assume f is continuous on the closed interval [a,b].",
+  "domain": "real_analysis",
+  "difficulty": "undergraduate",
+  "expected_lemmas": 2
+}

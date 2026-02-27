@@ -1,0 +1,57 @@
+You are assembling a complete proof from proved lemmas.
+
+PROBLEM STATEMENT:
+{problem_statement}
+
+PROVED LEMMA INTERFACES:
+{proved_lemma_interfaces}
+
+PROVED LEMMA PROOFS:
+{proved_lemma_proofs}
+
+TASK:
+Assemble a complete, readable proof of the problem statement using the proved lemmas.
+
+REQUIREMENTS:
+1. Present a coherent mathematical argument from start to finish
+2. Cite each lemma where it is used (e.g., "By Lemma L2, ...")
+3. Fill in any "glue" steps needed to connect lemmas
+4. Verify the logic flows: do the lemmas actually combine to prove the main result?
+5. Total length should be appropriate for the result (aim for ≤ {max_total_tokens} tokens)
+
+STRUCTURE:
+1. Brief setup (restate the problem, establish notation)
+2. Main argument (invoke lemmas in dependency order, add connecting steps)
+3. Conclusion (verify the main statement follows)
+
+OUTPUT FORMAT (text, not JSON):
+
+# Proof of [Problem Statement]
+
+## Setup
+[Restate problem, establish notation and key definitions]
+
+## Main Argument
+
+[Use lemmas in logical order. For each major step:]
+
+**Step 1:** [Describe what you're proving in this step]
+By Lemma L#, we have [result]. [Add any needed connecting logic.]
+
+**Step 2:** ...
+
+## Conclusion
+[Verify that the main statement now follows from the steps above]
+
+QUALITY CHECKS:
+- Does every proved lemma appear in the argument?
+- Are lemmas cited in dependency order (no forward references)?
+- Are there any gaps where you jump to conclusions?
+- Is the notation consistent with the lemma interfaces?
+
+INTEGRATION NOTES:
+- If a lemma has assumptions, verify those assumptions are met before citing it
+- If you need to invoke a lemma multiple times, that's fine
+- Add brief explanations for non-obvious connections between lemmas
+
+Write the integrated proof now.

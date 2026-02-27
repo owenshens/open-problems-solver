@@ -1,0 +1,38 @@
+[build-system]
+requires = ["setuptools>=68.0", "wheel"]
+build-backend = "setuptools.backends._legacy:_Backend"
+
+[project]
+name = "open-problems-solver"
+version = "0.1.0"
+description = "AI-driven solver for open mathematical problems — both proving and disproving"
+readme = "README.md"
+license = "MIT"
+requires-python = ">=3.10"
+dependencies = [
+    "openai>=1.30",
+    "anthropic>=0.30",
+    "pydantic>=2.0",
+    "python-dotenv>=1.0",
+    "requests>=2.31",
+    "tenacity>=8.2",
+    "rich>=13.0",
+    "arxiv>=2.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0",
+    "ruff>=0.4",
+]
+
+[project.scripts]
+prove = "prover.__main__:main"
+disprove = "disprover.__main__:main"
+
+[tool.setuptools.packages.find]
+include = ["shared*", "prover*", "disprover*"]
+
+[tool.ruff]
+line-length = 120
+target-version = "py310"

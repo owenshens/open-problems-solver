@@ -1,0 +1,7 @@
+{
+  "id": "test-compactness",
+  "statement": "Prove that the continuous image of a compact set is compact.",
+  "background": "Let X and Y be topological spaces. A set K ⊆ X is compact if every open cover has a finite subcover. A function f: X → Y is continuous if the preimage of every open set is open.",
+  "domain": "topology",
+  "tags": ["compactness", "continuity", "topology"]
+}

@@ -1,0 +1,88 @@
+You are decomposing a BLOCKED lemma into simpler sub-lemmas.
+
+PARENT LEMMA (BLOCKED):
+Lemma ID: {parent_lemma_id}
+Statement: {parent_lemma_statement}
+Assumptions: {parent_lemma_assumptions}
+Dependencies: {parent_lemma_dependencies}
+
+BLOCKING REASON:
+{blocking_reason}
+
+BACKGROUND KNOWLEDGE:
+{problem_background}
+
+DOMAIN:
+{problem_domain}
+
+CURRENT DECOMPOSITION DEPTH: {current_depth} / {max_depth}
+
+TASK:
+This lemma could not be proved directly. Decompose it into 2-6 simpler sub-lemmas that:
+1. Together imply the parent lemma statement
+2. Are each provable within 10-30 minutes (individually simpler than parent)
+3. Directly address the specific blocking issue
+4. Form a clean dependency DAG (sub-lemmas can depend on each other)
+
+DECOMPOSITION STRATEGY:
+- Identify the key obstruction in the parent lemma
+- Break it into smaller, more manageable claims
+- Each sub-lemma should be "one-shot provable" (no further decomposition needed)
+- Ensure sub-lemmas compose: parent follows from sub-lemmas
+
+CRITICAL REQUIREMENTS:
+1. Each sub-lemma statement must be SIMPLER than the parent
+2. Sub-lemmas must be CONCRETE (not just restating the parent)
+3. Dependencies between sub-lemmas must be explicit
+4. The proof strategy must explain how sub-lemmas prove the parent
+
+OUTPUT FORMAT (valid JSON only):
+{{
+  "lemmas": [
+    {{
+      "id": "1",
+      "statement": "[Clear, specific mathematical statement]",
+      "assumptions": ["[Explicit assumptions needed]"],
+      "dependencies": []
+    }},
+    {{
+      "id": "2",
+      "statement": "[Another sub-lemma]",
+      "assumptions": ["[Assumptions]"],
+      "dependencies": ["1"]
+    }}
+  ],
+  "proof_strategy": "[Explain how these sub-lemmas together prove the parent lemma]",
+  "blocking_addressed": "[Explain how this decomposition addresses the specific blocking issue]"
+}}
+
+EXAMPLE:
+
+Parent Lemma (BLOCKED): "Every open cover of f(K) has a finite subcover"
+Blocking Reason: "Cannot establish connection between covers of K and f(K)"
+
+Good Decomposition:
+{{
+  "lemmas": [
+    {{
+      "id": "1",
+      "statement": "For any open cover {{U_α}} of f(K), the preimages {{f⁻¹(U_α)}} form an open cover of K",
+      "assumptions": ["f is continuous", "{{U_α}} covers f(K)"],
+      "dependencies": []
+    }},
+    {{
+      "id": "2",
+      "statement": "If {{V_i}} is a finite subcover of K and each V_i = f⁻¹(U_{α_i}), then {{U_{α_i}}} covers f(K)",
+      "assumptions": ["{{V_i}} covers K", "Each V_i is a preimage under f"],
+      "dependencies": ["1"]
+    }}
+  ],
+  "proof_strategy": "Sub-lemma 1 pulls the cover back to K via continuity. Sub-lemma 2 shows the finite subcover of K (which exists by compactness) pushes forward to a finite subcover of f(K). Together they establish compactness of f(K).",
+  "blocking_addressed": "The blocking issue was connecting covers of K to covers of f(K). Sub-lemma 1 handles the pullback, sub-lemma 2 handles the pushforward, making the connection explicit."
+}}
+
+IMPORTANT:
+- Return valid JSON ONLY. No markdown, no prose outside JSON.
+- Each sub-lemma must be STRICTLY SIMPLER than the parent
+- The decomposition must RESOLVE the blocking issue
+- If decomposition seems impossible, return empty lemmas array and explain in proof_strategy

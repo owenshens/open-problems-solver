@@ -1,0 +1,21 @@
+{
+  "id": "ramsey_r55",
+  "statement": "R(5,5) <= 48, i.e., every 2-coloring of E(K_49) contains a monochromatic K_5.",
+  "win_condition": "Exhibit a 2-coloring of E(K_49) with no monochromatic K_5 subgraph (proving R(5,5) > 49).",
+  "domain": "Graph Theory / Ramsey Theory",
+  "background": "R(5,5) >= 43 (Exoo 1989). R(5,5) <= 48 (Angeltveit-McKay 2017). The exact value is unknown. Best known lower bound constructions use Paley-type graphs and algebraic constructions.",
+  "known_bounds": "43 <= R(5,5) <= 48",
+  "tags": ["ramsey-theory", "graph-theory", "extremal-combinatorics"],
+  "strategy_suggestions": [
+    {
+      "suggestion": "Start from Paley-type constructions on GF(q) and try local modifications",
+      "rationale": "Paley graphs are the primary source of Ramsey lower bounds for diagonal cases",
+      "priority": "high"
+    },
+    {
+      "suggestion": "Consider flag algebra or SDP bounds to narrow the feasible region",
+      "rationale": "Razborov's flag algebra method has been effective for related problems",
+      "priority": "medium"
+    }
+  ]
+}

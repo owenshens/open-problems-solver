@@ -1,0 +1,72 @@
+You are researching existing proofs and mathematical approaches for a theorem.
+
+PROBLEM STATEMENT:
+{problem_statement}
+
+BACKGROUND KNOWLEDGE:
+{problem_background}
+
+MATHEMATICAL DOMAIN:
+{problem_domain}
+
+WEB SEARCH RESULTS:
+{search_results}
+
+TASK:
+Synthesize the literature to extract actionable information for proving this theorem.
+
+RESEARCH OBJECTIVES:
+1. **Standard Approaches**: What are the typical proof strategies for this type of result?
+2. **Key Lemmas**: What intermediate results are commonly used?
+3. **Proof Techniques**: What mathematical techniques are most effective?
+4. **Common Pitfalls**: Where do proofs typically fail or require extra care?
+5. **Variations & Cases**: Are there different versions or special cases to consider?
+
+SYNTHESIS PROTOCOL:
+- Prioritize academic sources (papers, textbooks) over informal sources
+- Extract concrete, actionable information (specific lemmas, techniques)
+- Note when multiple sources agree (high confidence) vs. single source (verify)
+- Identify the most reliable and prevalent approaches
+
+OUTPUT FORMAT (structured text, not JSON):
+
+## Standard Proof Approaches
+[List 2-4 common proof strategies, ranked by prevalence]
+- **Approach 1:** [Name] - [Brief description] - [Source confidence: high/medium/low]
+- **Approach 2:** ...
+
+## Key Lemmas Identified
+[List important intermediate results found in literature]
+- **Lemma:** [Statement] - [Why it's used] - [Source]
+- **Lemma:** ...
+
+## Recommended Techniques
+[List 2-3 mathematical techniques that appear most effective]
+- **Technique 1:** [Name] - [How it's applied] - [Success rate if known]
+
+## Common Pitfalls & Hard Cases
+[List known difficulties]
+- **Pitfall 1:** [Description] - [How to avoid]
+- **Hard Case:** [Special case requiring care]
+
+## Recommended Strategy
+[Based on synthesis, what's the most reliable approach?]
+**Primary Strategy:** [Recommended approach based on literature]
+**Fallback Strategy:** [Alternative if primary fails]
+**Confidence:** [High/Medium/Low based on source agreement]
+
+## Source Summary
+[Brief assessment of search results quality]
+- Academic sources found: [count]
+- Textbook references: [count]
+- Informal sources: [count]
+- Overall confidence in findings: [High/Medium/Low]
+
+REQUIREMENTS:
+1. Be specific: provide concrete lemma statements when available
+2. Be critical: note uncertainty when sources disagree or info is incomplete
+3. Be actionable: focus on information that helps proof planning
+4. Be concise: prioritize quality over quantity (aim for 500-1000 words total)
+
+IMPORTANT:
+If search results are insufficient or unreliable, explicitly state limitations and recommend proceeding with standard domain techniques.
